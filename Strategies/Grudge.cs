@@ -20,20 +20,12 @@ namespace ShareOrTake.Strategies
             if (roundNum > 0)
             {
                 Round lastRound = gameState[roundNum - 1];
+                int otherPlayer = (playerNum == 0 ? 1 : 0);
+
                 // if the opponent stole last round
-                if (playerNum == 0)
-                { 
-                    if (!lastRound.Share1)
-                    {
-                        HasGrudge = true;
-                    }
-                }
-                if (playerNum == 1)
+                if (!lastRound.ShareResult[otherPlayer])
                 {
-                    if (!lastRound.Share0)
-                    {
-                        HasGrudge = true;
-                    }
+                    HasGrudge = true;
                 }
             }
             if (!HasGrudge)

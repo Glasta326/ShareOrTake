@@ -32,14 +32,9 @@ namespace ShareOrTake
         public const int BothTakeReward = 1;
 
         /// <summary>
-        /// True if player 0 shared, false if player 0 takes
+        /// Slot n for player n's share choice
         /// </summary>
-        public bool Share0 = false;
-
-        /// <summary>
-        /// True if player 1 shared, false if player 1 takes
-        /// </summary>
-        public bool Share1 = false;
+        public bool[] ShareResult = new bool[] { false,false };
 
         /// <summary>
         /// True if this round has already been played
@@ -49,8 +44,8 @@ namespace ShareOrTake
 
         public Round(bool share0 = false, bool share1 = false)
         {
-            Share0 = share0;
-            Share1 = share1;
+            ShareResult[0] = share0;
+            ShareResult[1] = share1;
         }
 
 
@@ -61,25 +56,25 @@ namespace ShareOrTake
         public int[] Reward()
         {
             // If both players share
-            if (Share0 && Share1)
+            if (ShareResult[0] && ShareResult[1])
             {
                 return new int[] { BothShareReward, BothShareReward };
             }
 
             // If 0 shares and 1 takes
-            if (Share0 && !Share1)
+            if (ShareResult[0] && !ShareResult[1])
             {
                 return new int[] { SingleShareReward, SingleTakeReward };
             }
 
             // If 0 takes and 1 shares
-            if (!Share0 && Share1)
+            if (!ShareResult[0] && ShareResult[1])
             {
                 return new int[] { SingleTakeReward, SingleShareReward };
             }
 
             // If Both 0 and 1 take
-            if (!Share0 && !Share1)
+            if (!ShareResult[0] && !ShareResult[1])
             {
                 return new int[] { BothTakeReward, BothTakeReward };
             }

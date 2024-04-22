@@ -27,15 +27,9 @@ namespace ShareOrTake.Strategies
             if (roundNum > 0)
             {
                 Round lastRound = gameState[roundNum - 1];
+                int otherPlayer = (playerNum == 0 ? 1 : 0);
 
-                if (playerNum == 0)
-                {
-                    shouldShare = lastRound.Share1;
-                }
-                else
-                {
-                    shouldShare = lastRound.Share0;
-                }
+                shouldShare = lastRound.ShareResult[otherPlayer];
             }
             // get sneaky and steal with 10% chance
             if (random.Next(0,10) == 0)

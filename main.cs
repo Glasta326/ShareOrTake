@@ -57,8 +57,8 @@ namespace ShareOrTake
                         bool Player1Decision = player1.MakeDecision(CurrentGameState, 1, i);
 
                         // update the current round info
-                        CurrentRound.Share0 = Player0Decision;
-                        CurrentRound.Share1 = Player1Decision;
+                        CurrentRound.ShareResult[0] = Player0Decision;
+                        CurrentRound.ShareResult[1] = Player1Decision;
                         CurrentRound.RoundHasPlayed = true;
                         Game.GameRounds[i] = CurrentRound;
 

@@ -19,15 +19,9 @@ namespace ShareOrTake.Strategies
             if (roundNum > 0)
             {
                 Round lastRound = gameState[roundNum - 1];
+                int otherPlayer = (playerNum == 0 ? 1 : 0);
 
-                if (playerNum == 0)
-                {
-                    return lastRound.Share1;
-                }
-                else
-                {
-                    return lastRound.Share0;
-                }
+                return lastRound.ShareResult[otherPlayer];
             }
             // on first move, share
             else
